@@ -6,7 +6,6 @@ class Window(ThemedTk):
         super().__init__(*args,**kwargs)
         self.title('孫榕陽的lesson4作業')
         style = ttk.Style(self)        
-        style.configure('Main1.TButton',font=("Arial",15,"bold"))
         frame_width = 200
         # 上部按鈕區域
         topFrame = ttk.Frame(self,width=frame_width, borderwidth=1, relief='groove')
