@@ -7,7 +7,7 @@ class Window(ThemedTk):
         self.title('孫榕陽的lesson4作業')
         style = ttk.Style(self)        
         frame_width = 200
-        # 上部按鈕區域
+        #============上部按鈕區域開始================================================
         topFrame = ttk.Frame(self,width=frame_width, borderwidth=1, relief='groove')
 
         btn1 = ttk.Button(topFrame, text="按鈕1")
@@ -17,9 +17,17 @@ class Window(ThemedTk):
         btn3 = ttk.Button(topFrame, text="按鈕3")
         btn3.pack(side='left', fill='x', padx=10,pady=5)
         topFrame.pack(side="top",expand=True,padx=10, pady=10,fill='both')
+        #============上部按鈕區域結束================================================
 
-        # 左邊按鈕區域
-        leftFrame = ttk.Frame(self, width=frame_width, borderwidth=1, relief='groove')
+
+        #============下部按鈕區域開始================================================
+        bottomFrame = ttk.Frame(self,width=frame_width, borderwidth=1, relief='groove')
+        bottomFrame.pack(side="top",expand=True,padx=10, pady=10,fill='both')
+        #============下部按鈕區域結束================================================
+
+
+        #============左邊按鈕區域開始================================================
+        leftFrame = ttk.Frame(bottomFrame, width=frame_width, borderwidth=1, relief='groove')
         
         btn4 = ttk.Button(leftFrame, text="按鈕4")
         btn4.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=30)
@@ -28,9 +36,10 @@ class Window(ThemedTk):
         btn6 = ttk.Button(leftFrame, text="按鈕6")
         btn6.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=10)
         leftFrame.pack(side='left', padx=10, pady=10, fill='both', expand=True)
+        #============左邊按鈕區域結束================================================
 
-        # 中間按鈕區域
-        centerFrame = ttk.Frame(self, width=frame_width, borderwidth=1, relief='groove')
+        #============中間按鈕區域開始================================================
+        centerFrame = ttk.Frame(bottomFrame, width=frame_width, borderwidth=1, relief='groove')
         
         btn7 = ttk.Button(centerFrame, text="按鈕7")
         btn7.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=30)
@@ -39,9 +48,10 @@ class Window(ThemedTk):
         btn9 = ttk.Button(centerFrame, text="按鈕9")
         btn9.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=30)
         centerFrame.pack(side="left", padx=10, pady=10,fill='both', expand=True)
+        #============中間按鈕區域結束================================================
 
-        # 右邊按鈕區域
-        rightFrame = ttk.Frame(self, width=frame_width, borderwidth=1, relief='groove')
+        #============右邊按鈕區域開始================================================
+        rightFrame = ttk.Frame(bottomFrame, width=frame_width, borderwidth=1, relief='groove')
         
         btn10 = ttk.Button(rightFrame, text="按鈕10")
         btn10.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=20)
@@ -50,9 +60,7 @@ class Window(ThemedTk):
         btn12 = ttk.Button(rightFrame, text="按鈕12")
         btn12.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=20)
         rightFrame.pack(side="left", padx=10, pady=10,fill='both', expand=True)
-
-
-
+        #============右邊按鈕區域結束================================================
 def main():
     window = Window(theme="arc")
     window.mainloop()
