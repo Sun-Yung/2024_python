@@ -1,0 +1,88 @@
+from ttkthemes import ThemedTk
+from tkinter import ttk
+
+class Window(ThemedTk):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.title('孫榕陽的lesson4作業')
+        style = ttk.Style(self)        
+        frame_width = 200
+        #============上部按鈕區域開始================================================
+        topFrame = ttk.Frame(self,width=frame_width, borderwidth=1, relief='groove')
+
+        self.btn1 = ttk.Button(topFrame, text="按鈕1",command=self.userclick1)
+        self.btn1.pack(side='left',fill='x', padx=10,pady=5)
+        btn2 = ttk.Button(topFrame, text="按鈕2",command=self.userclick2)
+        btn2.pack(side='left', fill='x', padx=30,pady=5)
+        btn3 = ttk.Button(topFrame, text="按鈕3",command=self.userclick3)
+        btn3.pack(side='left', fill='x', padx=10,pady=5)
+        topFrame.pack(side="top",expand=True,padx=10, pady=10,fill='both')
+        #============上部按鈕區域結束================================================
+
+
+        #============下部按鈕區域開始================================================
+        bottomFrame = ttk.Frame(self,width=frame_width, borderwidth=1, relief='groove')
+        bottomFrame.pack(side="top",expand=True,padx=10, pady=10,fill='both')
+        #============下部按鈕區域結束================================================
+
+
+        #============左邊按鈕區域開始================================================
+        leftFrame = ttk.Frame(bottomFrame, width=frame_width, borderwidth=1, relief='groove')
+        
+        btn4 = ttk.Button(leftFrame, text="按鈕4")
+        btn4.bind('<ButtonRelease>',self.leftbuttonclick)
+        btn4.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=30)
+        btn5 = ttk.Button(leftFrame, text="按鈕5")
+        btn5.bind('<ButtonRelease>',self.leftbuttonclick)
+        btn5.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=10)
+        btn6 = ttk.Button(leftFrame, text="按鈕6")
+        btn6.bind('<ButtonRelease>',self.leftbuttonclick)
+        btn6.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=10)
+        leftFrame.pack(side='left', padx=10, pady=10, fill='both', expand=True)
+        #============左邊按鈕區域結束================================================
+
+        #============中間按鈕區域開始================================================
+        centerFrame = ttk.Frame(bottomFrame, width=frame_width, borderwidth=1, relief='groove')
+        
+        btn7 = ttk.Button(centerFrame, text="按鈕7")
+        btn7.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=30)
+        btn8 = ttk.Button(centerFrame, text="按鈕8")
+        btn8.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=10)
+        btn9 = ttk.Button(centerFrame, text="按鈕9")
+        btn9.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=30)
+        centerFrame.pack(side="left", padx=10, pady=10,fill='both', expand=True)
+        #============中間按鈕區域結束================================================
+
+        #============右邊按鈕區域開始================================================
+        rightFrame = ttk.Frame(bottomFrame, width=frame_width, borderwidth=1, relief='groove')
+        
+        btn10 = ttk.Button(rightFrame, text="按鈕10")
+        btn10.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=20)
+        btn11 = ttk.Button(rightFrame, text="按鈕11")
+        btn11.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=20)
+        btn12 = ttk.Button(rightFrame, text="按鈕12")
+        btn12.pack(side='top',expand=True,fill='both',padx=10,pady=5,ipady=20)
+        rightFrame.pack(side="left", padx=10, pady=10,fill='both', expand=True)
+        #============右邊按鈕區域結束================================================
+    def userclick1(self):
+        self.btn1.configure(text="被按了")
+        print("BUTTON1")
+    def userclick2(self):
+        print("BUTTON2")
+    def userclick3(self):
+        print("BUTTON3")    
+    def leftbuttonclick(self,event):
+        print(event.widget.configure(text="被按了"))
+
+
+
+
+def main():
+    window = Window(theme="arc")
+    window.mainloop()
+
+
+
+
+if __name__ == '__main__':
+    main()

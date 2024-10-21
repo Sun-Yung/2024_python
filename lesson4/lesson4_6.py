@@ -20,6 +20,6 @@ class Window(ThemedTk):
 def main():
     window = Window(theme="arc")
     window.mainloop()
-
+    
 if __name__ == '__main__':
     main()
