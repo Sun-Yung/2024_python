@@ -15,30 +15,35 @@ class Window(ThemedTk):
         #==============top Frame===============
 
         topFrame = ttk.Frame(self)
-        ttk.Label(topFrame,text='是否同意',style='TopFrame.TLabel').pack()
+        ttk.Label(topFrame,text='check_box多選鈕',style='TopFrame.TLabel').pack()
         topFrame.pack(padx=20,pady=20)
         
         #==============end topFrame===============
 
         #==============bottomFrame===============
         bottomFrame = ttk.Frame(self)
-        agreement = tk.StringVar()
-        def agreement_changed():
-            tk.messagebox.showinfo(title='Result',message=agreement.get())
-        ttk.Checkbutton(bottomFrame,
-            text='I agree',
-            command=agreement_changed,
-            variable=agreement,
-            onvalue='agree',
-            offvalue='disagree').pack()
-        
+        self.agreement = tk.StringVar()
 
+        ttk.Checkbutton(bottomFrame,
+                text='I agree',
+                command=self.agreement_changed,
+                variable=self.agreement,
+                onvalue='agree',
+                offvalue='disagree').pack()
         
         bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20),ipadx=10,ipady=10)
         #==============end bottomFrame===============
     
+    def agreement_changed(self):
+        showinfo(
+            title='Agreement',
+            message= self.agreement.get()
+
+        )
+    
     
         
+
 def main():
     window = Window(theme="arc")
     window.mainloop()

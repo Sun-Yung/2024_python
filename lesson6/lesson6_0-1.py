@@ -1,3 +1,5 @@
+import datasource
+
 from tkinter import ttk
 import tkinter as tk
 from ttkthemes import ThemedTk
@@ -15,30 +17,37 @@ class Window(ThemedTk):
         #==============top Frame===============
 
         topFrame = ttk.Frame(self)
-        ttk.Label(topFrame,text='是否同意',style='TopFrame.TLabel').pack()
+        ttk.Label(topFrame,text='空氣品質指標(AQI)(歷史資料)',style='TopFrame.TLabel').pack()
         topFrame.pack(padx=20,pady=20)
         
         #==============end topFrame===============
 
         #==============bottomFrame===============
         bottomFrame = ttk.Frame(self)
-        agreement = tk.StringVar()
-        def agreement_changed():
-            tk.messagebox.showinfo(title='Result',message=agreement.get())
-        ttk.Checkbutton(bottomFrame,
-            text='I agree',
-            command=agreement_changed,
-            variable=agreement,
-            onvalue='agree',
-            offvalue='disagree').pack()
+        sitenames = datasource.get_sitename()
+        self.selected_site = tk.StringVar()
+        print(sitenames)
+        sitenames_cb = ttk.Combobox(bottomFrame, textvariable=self.selected_site,values=sitenames)
+        sitenames_cb.configure(values=sitenames,state="readonly")
+        self.selected_site.set('請選擇站點')
+        sitenames_cb.pack()
+        
         
 
         
         bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20),ipadx=10,ipady=10)
         #==============end bottomFrame===============
     
+    def agreement_changed(self):
+        showinfo(
+            title='Agreement',
+          
+
+        )
+    
     
         
+
 def main():
     window = Window(theme="arc")
     window.mainloop()
