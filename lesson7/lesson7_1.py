@@ -26,13 +26,18 @@ class Window(ThemedTk):
 
         #==============bottomFrame===============
         bottomFrame = ttk.Frame(self)
-        sitenames = datasource.get_sitename()
-        self.selected_site = tk.StringVar()
-        sitenames_cb = ttk.Combobox(bottomFrame, textvariable=self.selected_site,values=sitenames,state='readonly')
-        self.selected_site.set('請選擇站點')
-        sitenames_cb.bind('<<ComboboxSelected>>', self.sitename_selected)
-        sitenames_cb.pack(side='left',expand=True,anchor='n')        
-        
+            #==============selectedFrame===============
+        selectedframe=ttk.Frame(self,padding=[10,10,10,10])
+        #============combobox選擇城市
+        counties = datasource.get_county()
+        # self.selected_site = tk.StringVar()
+        self.selected_county=tk.StringVar()
+        sitenames_cb = ttk.Combobox(selectedframe, textvariable=self.selected_county,values=counties,state='readonly')
+        self.selected_county.set('請選擇城市')
+        sitenames_cb.bind('<<ComboboxSelected>>', self.county_selected)
+        sitenames_cb.pack(expand=True,anchor='n')
+        selectedframe.pack(side="left",expand=True,fill="y",padx=(20,0))    
+            #==============end selectedFrame===============
         
 
         # define columns
@@ -70,7 +75,9 @@ class Window(ThemedTk):
         bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20),ipadx=10,ipady=10)
 
             #==============end bottomFrame===============
-        
+    def county_selected(self,event):
+        selected=self.selected_county.get()
+        print(selected)        
     def sitename_selected(self,event):
         for children in self.tree.get_children():
             self.tree.delete(children)
