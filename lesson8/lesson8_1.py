@@ -6,7 +6,7 @@ import tkinter as tk
 from ttkthemes import ThemedTk
 from tkinter.messagebox import showinfo
 import view
-from PIL import ImageTk,Image
+
 class Window(ThemedTk):
     def __init__(self,*args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,11 +30,8 @@ class Window(ThemedTk):
             #==============selectedFrame===============
         self.selectedframe=ttk.Frame(self,padding=[10,10,10,10])
         #增加refresh按鈕
-        self.icon_Image =Image.open("refresh.png")
-        self.icon_photo =ImageTk.PhotoImage(self.icon_Image)
-        icon_button=view.Imagebutton(self.selectedframe,
-                                     text="重新下載資料",
-                                     image=self.icon_photo,)
+       
+        icon_button=view.Imagebutton(self.selectedframe)
         icon_button.pack()
 
 
