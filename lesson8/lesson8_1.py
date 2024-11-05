@@ -46,11 +46,11 @@ class Window(ThemedTk):
 
         self.sitenameFrame=None
 
-        self.selectedframe.pack(side="left",expand=True,fill="y")    
+        self.selectedframe.pack(side="left",fill="y")    
             #==============end selectedFrame===============
         
         #=====rightframe===============
-        rightframe=ttk.LabelFrame(bottomFrame,text="站點資訊")
+        rightframe=ttk.LabelFrame(bottomFrame,text="站點資訊",padding=[10,10,10,10])
         #建立treeview
         # define columns
         columns = ('date', 'county',"sitename" ,'aqi', 'pm25','status','lat','lon')
