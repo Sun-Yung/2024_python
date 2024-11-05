@@ -26,12 +26,12 @@ class Window(ThemedTk):
         #==============end topFrame===============
 
         #==============bottomFrame===============
-        bottomFrame = ttk.Frame(self)
+        bottomFrame = ttk.Frame(self,padding=[10,10,10,10])
             #==============selectedFrame===============
         self.selectedframe=ttk.Frame(self,padding=[10,10,10,10])
         #增加refresh按鈕
        
-        icon_button=view.Imagebutton(self.selectedframe)
+        icon_button=view.Imagebutton(self.selectedframe,command=lambda:datasource.download_data())
         icon_button.pack()
 
 
@@ -46,14 +46,16 @@ class Window(ThemedTk):
 
         self.sitenameFrame=None
 
-        self.selectedframe.pack(side="left",expand=True,fill="y",padx=(20,0))    
+        self.selectedframe.pack(side="left",expand=True,fill="y")    
             #==============end selectedFrame===============
         
-
+        #=====rightframe===============
+        rightframe=ttk.LabelFrame(bottomFrame,text="站點資訊")
+        #建立treeview
         # define columns
         columns = ('date', 'county',"sitename" ,'aqi', 'pm25','status','lat','lon')
 
-        self.tree = ttk.Treeview(bottomFrame, columns=columns, show='headings')
+        self.tree = ttk.Treeview(rightframe, columns=columns, show='headings')
 
         # define headings
         self.tree.heading('date', text='日期')
@@ -74,17 +76,18 @@ class Window(ThemedTk):
         self.tree.column('lat', width=100,anchor="center")
         self.tree.column('lon', width=100,anchor="center")
         
-        # generate sample data
-        #contacts = []
-        #for n in range(1, 100):
-        #    contacts.append((f'first {n}', f'last {n}', f'email{n}@example.com'))
-
-        # add data to the treeview
-        #for contact in contacts:
-        #    tree.insert('', tk.END, values=contact)
         
         self.tree.pack(side='right')
-        bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20),ipadx=10,ipady=10)
+
+        rightframe.pack(side="right")
+
+
+        #=====end rightframe===========
+
+
+
+        
+        bottomFrame.pack()
 
             #==============end bottomFrame===============
     def county_selected(self,event):
