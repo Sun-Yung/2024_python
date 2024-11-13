@@ -1,6 +1,5 @@
 
 import datasource
-
 from tkinter import ttk
 import tkinter as tk
 from ttkthemes import ThemedTk
