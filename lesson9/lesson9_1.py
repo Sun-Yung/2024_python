@@ -118,8 +118,7 @@ class Window(ThemedTk):
     def item_selected(self,event):
         for selected_item in self.tree.selection():
             record = self.tree.item(selected_item)
-            print(record['values'])
-            dialog=view.MycustomDialog(parent=self,title="自定義對話框")
+            dialog=view.MycustomDialog(parent=self,title="自定義對話框",record=record['values'])
 
 def main():
     datasource.download_data() #下載至資料庫
