@@ -96,7 +96,7 @@ def get_selected_data(city:str)->list[list]:
         SELECT city,dist,Sitename,address
         FROM battery
         WHERE dist=?
-       
+        
         '''
         cursor.execute(sql,(city,))
         sitename_list=[list(item)for item in cursor.fetchall()]
