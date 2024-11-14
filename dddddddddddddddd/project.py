@@ -51,20 +51,20 @@ class Window(ThemedTk):
         rightframe=ttk.LabelFrame(bottomFrame,text="站點資訊",padding=[10,10,10,10])
         #建立treeview
         # define columns
-        columns = ("sitename","city" ,'dist', 'address')
+        columns = ("city","dist" ,'sitename', 'address')
 
         self.tree = ttk.Treeview(rightframe, columns=columns, show='headings')
         self.tree.bind('<<TreeviewSelect>>', self.item_selected)
         # define headings
-        self.tree.heading('sitename', text='站點名稱')
         self.tree.heading('city', text='縣市')
         self.tree.heading('dist', text='鄉鎮區')
+        self.tree.heading('sitename', text='站點名稱')
         self.tree.heading('address', text='地址')
        
-        self.tree.column('sitename', width=150,anchor="center")
-        self.tree.column('city', width=80,anchor="center")
+        self.tree.column('city', width=150,anchor="center")
         self.tree.column('dist', width=80,anchor="center")
-        self.tree.column('address', width=50,anchor="center")
+        self.tree.column('sitename', width=80,anchor="center")
+        self.tree.column('address', width=600,anchor="center")
         
         
         self.tree.pack(side='right')

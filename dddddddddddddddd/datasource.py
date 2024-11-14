@@ -164,20 +164,20 @@ def download_data():
             cursor = conn.cursor()
 
             for index, row in df.iterrows():
-                sitename = row['sitename']
                 city = row['city']
                 dist = row['dist']
+                sitename = row['sitename']
                 address = row['address']
 
                 # 檢查資料是否完整
-                if not all([sitename, city, dist, address]):
+                if not all([city, dist, sitename, address]):
                     print(f"跳過不完整的資料: {row}")
                     continue  # 跳過不完整的項目
 
                 # 插入資料庫
-                sql = '''INSERT OR IGNORE INTO battery(sitename, city, dist, address)
+                sql = '''INSERT OR IGNORE INTO battery(city, dist, sitename, address)
                          VALUES (?, ?, ?, ?)'''
-                cursor.execute(sql, (sitename, city, dist, address))
+                cursor.execute(sql, (city, dist, sitename, address))
 
         print("資料已成功下載並插入資料庫。")
 
