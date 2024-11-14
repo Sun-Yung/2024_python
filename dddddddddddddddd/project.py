@@ -61,10 +61,10 @@ class Window(ThemedTk):
         self.tree.heading('sitename', text='站點名稱')
         self.tree.heading('address', text='地址')
        
-        self.tree.column('city', width=150,anchor="center")
+        self.tree.column('city', width=80,anchor="center")
         self.tree.column('dist', width=80,anchor="center")
-        self.tree.column('sitename', width=80,anchor="center")
-        self.tree.column('address', width=600,anchor="center")
+        self.tree.column('sitename', width=120,anchor="center")
+        self.tree.column('address', width=550,anchor="center")
         
         
         self.tree.pack(side='right')
