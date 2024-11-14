@@ -93,7 +93,7 @@ def get_selected_data(city:str)->list[list]:
     with conn:
         cursor=conn.cursor()
         sql='''
-        SELECT Sitename,city,dist,address
+        SELECT city,dist,Sitename,address
         FROM battery
         WHERE dist=?
        
