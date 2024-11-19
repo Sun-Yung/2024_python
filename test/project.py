@@ -29,8 +29,8 @@ class Window(ThemedTk):
         self.selectedframe = ttk.Frame(self, padding=[10, 10, 10, 10])
         
         # 增加refresh按鈕
-        icon_button = view.Imagebutton(self.selectedframe, command=lambda: datasource.download_data())
-        icon_button.pack()
+        # icon_button = view.Imagebutton(self.selectedframe, command=lambda: datasource.download_data())
+        # icon_button.pack()
 
         # =============combobox選擇城市
         counties = datasource.get_county()
