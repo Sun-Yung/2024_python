@@ -37,13 +37,9 @@ print(f"資料已經成功從 '{csv_file}' 插入到資料庫中。")
 #---------------------------------------------------------------------------------
 
 
-def get_sitename(county:str)->list[str]:
+def get_sitename(county: str) -> list[str]:
     '''
-    docString
-    parameter:
-        county:城市名稱
-    return:
-        傳出所有的站點名稱
+    根據城市名稱返回所有的站點區域（dist）
     '''
     conn = sqlite3.connect("example.db")
     with conn:
@@ -53,10 +49,9 @@ def get_sitename(county:str)->list[str]:
         FROM battery
         WHERE city=?
         '''
-        cursor.execute(sql,(county,))
-        city = [items[0] for items in cursor.fetchall()]
-    
-    return city
+        cursor.execute(sql, (county,))
+        dist_list = [items[0] for items in cursor.fetchall()]
+    return dist_list
 
 def get_county()->list[str]:
     '''
@@ -83,26 +78,27 @@ def get_county()->list[str]:
     return dist
 
     
-def get_selected_data(city:str)->list[list]:
+def get_selected_data(city:str, dist:str)->list[list]:
     '''
-    使用者選擇了sitename,並將sitename傳入
+    使用者選擇了sitename，並將city與dist傳入
     Parameter:
-        sitename: 站點的名稱
+        city: 城市名稱
+        dist: 區域名稱
     Return:
-        所有關於此站點的相關資料
+        所有關於此城市及區域的相關資料
     '''
-    conn=sqlite3.connect("example.db")
+    conn = sqlite3.connect("example.db")
     with conn:
-        cursor=conn.cursor()
-        sql='''
-        SELECT city,dist,Sitename,address
+        cursor = conn.cursor()
+        sql = '''
+        SELECT city, dist, sitename, address
         FROM battery
-        WHERE dist=?
-        
+        WHERE city=? AND dist=?
         '''
-        cursor.execute(sql,(city,))
-        sitename_list=[list(item)for item in cursor.fetchall()]
+        cursor.execute(sql, (city, dist))
+        sitename_list = [list(item) for item in cursor.fetchall()]
         return sitename_list
+
 
 
 def download_data():

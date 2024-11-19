@@ -80,29 +80,38 @@ class Window(ThemedTk):
         bottomFrame.pack()
 
             #==============end bottomFrame===============
-    def county_selected(self,event):
-        selected=self.selected_county.get()
-        sitenames=datasource.get_sitename(county=selected)
-        #listbox選擇站點
-        if self.sitenameFrame:
-            self.sitenameFrame.destroy()
+    def county_selected(self, event):
+    selected = self.selected_county.get()  # 獲取選擇的城市
+    sitenames = datasource.get_sitename(county=selected)  # 查詢該城市的站點名稱
+    
+    # 重新繪製站點選擇框架
+    if self.sitenameFrame:
+        self.sitenameFrame.destroy()
 
-        self.sitenameFrame=view.SitenameFrame(master=self.selectedframe,sitenames=sitenames,radio_controll=self.radio_button_click)
-        self.sitenameFrame.pack()
+    self.sitenameFrame = view.SitenameFrame(master=self.selectedframe, sitenames=sitenames, radio_controll=self.radio_button_click)
+    self.sitenameFrame.pack()
+
 
     
-    def radio_button_click(self,         selected_sitename:str):
-        '''
-        - 此method是傳遞給SitenameFrame實體
-        - 當sitenameFrame內的radiobutton被選取時,會連動執行此method
-        Parameter:
-            selected_sitename:str -> 這是被選取的站點名稱
-        '''
-        for children in self.tree.get_children():
-            self.tree.delete(children)
-        selected_data=datasource.get_selected_data(selected_sitename)
-        for battery in selected_data:
-            self.tree.insert("", "end", values=battery)
+   def radio_button_click(self, selected_sitename: str):
+    '''
+    當選擇某一站點時，更新Treeview中的資料
+    Parameter:
+        selected_sitename: 被選取的站點名稱
+    '''
+    selected_city = self.selected_county.get()  # 獲取選擇的城市
+    selected_dist = self.selected_county.get()  # 獲取選擇的區域
+
+    # 清空現有的資料
+    for children in self.tree.get_children():
+        self.tree.delete(children)
+    
+    # 查詢資料
+    selected_data = datasource.get_selected_data(selected_city, selected_dist)
+    
+    # 插入資料到 Treeview
+    for battery in selected_data:
+        self.tree.insert("", "end", values=battery)
 
      
     def item_selected(self,event):

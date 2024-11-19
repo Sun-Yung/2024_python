@@ -25,4 +25,3 @@ class SitenameFrame(ttk.Frame):#繼承
     def radio_button_selected(self):
        if self.radio_controll != None:
            self.radio_controll(self.selected_radio.get())
-
