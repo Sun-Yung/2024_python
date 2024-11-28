@@ -4,7 +4,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.stattools import adfuller
 
 # 加載數據
-file_path = './data.csv'  # 確認資料檔案路徑
+file_path = './AIdata.csv'  # 確認資料檔案路徑
 data = pd.read_csv(file_path)
 
 # 數據清理
