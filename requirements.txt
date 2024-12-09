@@ -8,3 +8,5 @@ matplotlib
 psycopg2-binary
 Flask-wtf
 dash
+plotly
+dash-mantine-components
