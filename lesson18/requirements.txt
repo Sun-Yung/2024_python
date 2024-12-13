@@ -6,7 +6,7 @@ gunicorn
 psycopg2-binary
 Flask-WTF
 dash
-pands
+pandas
 plotly
 dash-mantine-components
 dash-iconify
