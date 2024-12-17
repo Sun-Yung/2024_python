@@ -6,7 +6,6 @@ import chardet
 import plotly.express as px
 import json
 import plotly.graph_objects as go
-
 _dash_renderer._set_react_version("18.2.0")
 # 讀取檔案編碼
 file_path = 'Gogoro_站點整理.csv'
@@ -16,6 +15,7 @@ detected_encoding = result['encoding']
 
 # 讀取 CSV 資料
 df = pd.read_csv(file_path, encoding=detected_encoding)
+
 
 # 資料清理
 df = df.dropna(subset=['city', 'dist', 'lat', 'lon'])  # 移除缺失值
@@ -131,8 +131,9 @@ def update_table(selected_city, selected_dist):
     ]))
     return dmc.Table([table_header, dmc.TableTbody(rows)])
 
-
 # 回調：顯示地圖
+import plotly.graph_objects as go
+
 @callback(
     Output('map', 'figure'),
     Input({'type': 'map-button', 'index': ALL}, 'n_clicks'),
@@ -163,38 +164,34 @@ def update_map(button_clicks, selected_city, selected_dist):
         except Exception as e:
             print(f"Error parsing trigger: {e}")
 
-    # 創建地圖並使用自定義圖片當圖釘
+    # 偵錯：印出經緯度
+ 
+
+    # 創建地圖
     fig = go.Figure(go.Scattermapbox(
-        lon=[selected_row['lon']],
+        lon=[selected_row['lon']],  # 使用原始的 lon 和 lat
         lat=[selected_row['lat']],
         mode='markers',
         marker=dict(
-            size=0,  # 隱藏預設標記點，使用自定義圖示
-        )
+            size=14,
+            color='red',
+            symbol='circle'
+        ),
+        text=[f"{selected_row['sitename']}<br>{selected_row['address']}"],
+        textposition='bottom center',
+        hoverinfo='text'
     ))
 
-    # 添加自定義圖片圖釘
+    # 設定地圖佈局
     fig.update_layout(
+        mapbox_style="open-street-map",
         mapbox=dict(
-            style="open-street-map",
             center=dict(
                 lon=selected_row['lon'], 
                 lat=selected_row['lat']
             ),
             zoom=15,
-            layers=[
-                {
-                    "source": "https://your-url-to-map.png",  # 替換為圖片的網址
-                    "type": "symbol",
-                    "layout": {
-                        "icon-image": "custom-icon",  # 自定義圖片圖釘名稱
-                        "icon-size": 1.5
-                    },
-                    "coordinates": [
-                        [selected_row['lon'], selected_row['lat']]
-                    ]
-                }
-            ]
+            
         ),
         showlegend=False,
         height=500,
@@ -203,6 +200,5 @@ def update_map(button_clicks, selected_city, selected_dist):
 
     return fig
 
-
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(debug=True)
