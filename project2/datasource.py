@@ -15,11 +15,11 @@ def get_cities()->list[dict]:
 #list comprehension
 
     convert_data:list[dict] = [{
-                            'city':item[1],
-                            'dist':item[2],
-                            'sitename':item[3],
-                            'addresss':item[4],
-                            'lat':item[5],
-                            'lon':item[6]
+                            'city':item[0],
+                            'dist':item[1],
+                            'sitename':item[2],
+                            'addresss':item[3],
+                            'lat':item[4],
+                            'lon':item[5]
                             } for item in data]
     return convert_data
