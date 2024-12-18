@@ -23,7 +23,7 @@ plt.rcParams['axes.unicode_minus'] = False  # 解決負號 '-' 顯示問題
 matplotlib.rc("font", family="Microsoft JhengHei")
 
 # Load the data
-file_path = r"/Users/sunrongyang/Documents/GitHub/TVDI_python/testing/AI/202410合併數據.xlsx"
+file_path = r"C:\Users\user\Documents\Github\2024_python\testing\AI\202410合併數據.xlsx"
 data = pd.read_excel(file_path)
 
 # Add a new column for the target variable ('新增', '減少', '保持不變')
@@ -103,7 +103,7 @@ def draw_decision_tree(model, features, class_names, figsize=(10, 5), fullscreen
 
 def load_data():
         # 加载数据
-    data = pd.read_excel(r'/Users/sunrongyang/Documents/GitHub/TVDI_python/testing/AI/202410合併數據.xlsx')
+    data = pd.read_excel(r'C:\Users\user\Documents\Github\2024_python\testing\AI\202410合併數據.xlsx')
     counties = data['縣市'].drop_duplicates().tolist()
     regions = data.groupby('縣市')['區域別'].apply(list).to_dict()
     return data, counties, regions
