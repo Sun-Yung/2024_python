@@ -1,42 +1,36 @@
 {% extends "_base.j2" %}
-{% block title %}職能發展學院首頁{% endblock %}
+{% block title %}Ｗｅｂ專題{% endblock %}
 
 {% block head %} {{super()}} {% endblock%}
 
 {% block main %}
-<div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-            <img src="{{url_for('static',filename='images/bootstrap-themes.png')}}" class="d-block mx-lg-auto img-fluid"
-                alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-        </div>
-        <div class="col-lg-6">
-            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">反思 都會能源</h1>
-            <p class="lead">能源創造正向改變
-                            透過全然不同的分配、儲存和應用能源解決方案，我們接下今日城市面臨的嚴峻挑戰。消除電能補充使用上的障礙，提升每一次騎乘體驗，我們正加速轉型至智慧移動及永續的都會生活型態。</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+<main style="background-image: url('{{ url_for('static', filename='images/gogoro.jpg') }}'); 
+             background-size: cover; 
+             background-position: center; 
+             padding: 20px;">
+    <div class="container col-xxl-8 px-1 py-5">
+        <div class="row align-items-center g-5 py-5">
+
+
+            <div class="col-lg-6" style="margin-left: -150px;" >
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3" style="color:rgb(251, 252, 253) !important;">反思 都會能源</h1>
+                <p class="lead" style="color:rgb(247, 247, 248);">
+                    能源創造正向改變
+                    透過全然不同的分配、儲存和應用能源解決方案，我們接下今日城市面臨的嚴峻挑戰。消除電能補充使用上的障礙，提升每一次騎乘體驗，我們正加速轉型至智慧移動及永續的都會生活型態。
+                </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">了解更多</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">離開網站</button>
+                </div>
             </div>
+
         </div>
     </div>
-</div>
-<div class="container">
-    <p class="d-inline-flex gap-1">
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-            aria-controls="collapseExample">
-            Link with href
-        </a>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-            aria-expanded="false" aria-controls="collapseExample">
-            Button with data-bs-target
-        </button>
-    </p>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the
-            user activates the relevant trigger.
-        </div>
-    </div>
-</div>
+</main>
+
+
+
+
+
+
 {% endblock %}
