@@ -10,3 +10,4 @@ pandas
 plotly
 dash-mantine-components
 dash-iconify
+chardet
